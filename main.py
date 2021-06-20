@@ -14,11 +14,11 @@ window = Tk()
 window.title("Strong Password Generator")
 window.config(padx=50, pady=50)
 
-new_password = []
+strong_password = []
 
 
 def password_generator():
-    global new_password
+    global strong_password
     password = []
     for each_letter in range(int(number_of_letters.get())):
         password.append(random.choice(letters))
@@ -27,12 +27,12 @@ def password_generator():
     for each_number in range(int(number_of_numbers.get())):
         password.append(random.choice(numbers))
     random.shuffle(password)
-    new_password = ''.join(password)
-    password_generated.config(text=new_password)
+    strong_password = ''.join(password)
+    password_generated.config(text=strong_password)
 
 
 def copy():
-    pyperclip.copy(new_password)
+    pyperclip.copy(strong_password)
 
 
 password_generated = Label(text="password")
@@ -45,8 +45,8 @@ symbols_label = Label(text="# of Symbols :")
 password_label = Label(text="Password :")
 password_label.grid(column=1, row=3)
 
-button = Button(text="Generate", width=13, command=password_generator)
-button.grid(column=1, row=4)
+generate_button = Button(text="Generate", width=13, command=password_generator)
+generate_button.grid(column=1, row=4)
 
 copy_button = Button(text="Copy", width=13, command=copy)
 copy_button.grid(column=2, row=4)
