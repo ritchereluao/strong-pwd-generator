@@ -19,13 +19,10 @@ strong_password = []
 
 def password_generator():
     global strong_password
-    password = []
-    for each_letter in range(int(number_of_letters.get())):
-        password.append(random.choice(letters))
-    for each_symbol in range(int(number_of_symbols.get())):
-        password.append(random.choice(symbols))
-    for each_number in range(int(number_of_numbers.get())):
-        password.append(random.choice(numbers))
+    password_letters = [random.choice(letters) for each_letter in range(int(number_of_letters.get()))]
+    password_symbols = [random.choice(symbols) for each_symbol in range(int(number_of_symbols.get()))]
+    password_numbers = [random.choice(numbers) for each_number in range(int(number_of_numbers.get()))]
+    password = password_letters + password_symbols + password_numbers
     random.shuffle(password)
     strong_password = ''.join(password)
     password_generated.config(text=strong_password)
@@ -35,7 +32,7 @@ def copy():
     pyperclip.copy(strong_password)
 
 
-password_generated = Label(text="password")
+password_generated = Label(text="")
 password_generated.grid(column=2, row=3)
 
 letters_label = Label(text="# of Letters :")
